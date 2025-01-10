@@ -28,16 +28,45 @@ const Navbar = () => {
             <li><Link to="/DashBoard">DashBoard</Link></li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">Artika</a>
-      </div>
+        <Link to="/" className="btn btn-ghost text-xl bg-[rgb(14,165,233)] text-white">Artika</Link>
+        </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/Donate">Donation Campaigns</Link></li>
-          <li><Link to="/Help">How to Help</Link></li>
-          <li><Link to="/DashBoard">DashBoard</Link></li>
-        </ul>
-      </div>
+  <ul className="menu menu-horizontal px-1">
+    <li>
+      <Link 
+        to="/" 
+        className={({ isActive }) => isActive ? "bg-red-600" : ""}
+      >
+        Home
+      </Link>
+    </li>
+    <li>
+      <Link 
+        to="/Donate" 
+        className={({ isActive }) => isActive ? "active" : ""}
+      >
+        Donation Campaigns
+      </Link>
+    </li>
+    <li>
+      <Link 
+        to="/Help" 
+        className={({ isActive }) => isActive ? "active" : ""}
+      >
+        How to Help
+      </Link>
+    </li>
+    <li>
+      <Link 
+        to="/DashBoard" 
+        className={({ isActive }) => isActive ? "active" : ""}
+      >
+        DashBoard
+      </Link>
+    </li>
+  </ul>
+</div>
+
       <div className="navbar-end gap-2">
         <Link to="/Login" className="btn bg-[rgb(14,165,233)] text-white">Login</Link>
         <Link to="/Register" className="btn bg-[rgb(14,165,233)] text-white">Register</Link>

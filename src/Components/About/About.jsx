@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const About = () => {
   return (
     <>
@@ -12,11 +14,11 @@ const About = () => {
           <h2 className="card-title">Winter Donation – A Call for Warmth</h2>
           <p>On a freezing winter night, a little girl holds her younger brother close, trying to keep him warm. Their faces show the harsh reality of suffering and hardship. This image reminds us of the struggles faced by the underprivileged during winter. Through winter donations, we can spread warmth and love in their lives. Let’s come together and stand by them this winter. 🤝</p>
           <div className="card-actions">
-            <button className="btn bg-[rgb(14,165,233)] text-white">Donate-Now</button>
+            <Link to="/Donate" className="btn bg-[rgb(14,165,233)] text-white">Donate-Now</Link>
           </div>
         </div>
       </div>
-            </>
+    </>
   );
 };
 

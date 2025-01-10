@@ -2,7 +2,7 @@ import About from "../About/About";
 
 const Home = () => {
     return (
-        <div className="rounded-md carousel w-full md:h-[700px] object-cover">
+        <div className="rounded-md carousel mt-8 w-full md:h-[700px] object-cover">
             <div id="slide1" className="carousel-item relative w-full">
                 <img
                     src="https://i.postimg.cc/TY6qgKKy/pic-1.jpg"
