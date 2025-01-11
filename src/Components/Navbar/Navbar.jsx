@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom"; // Import NavLink for navigation
 
 const Navbar = () => {
   return (
@@ -11,65 +11,41 @@ const Navbar = () => {
               className="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
-              stroke="currentColor">
+              stroke="currentColor"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16" />
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
             </svg>
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/Donate">Donation Campaigns</Link></li>
-            <li><Link to="/Help">How to Help</Link></li>
-            <li><Link to="/DashBoard">DashBoard</Link></li>
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+          >
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/Donate">Donation Campaigns</NavLink></li>
+            <li><NavLink to="/Help">How to Help</NavLink></li>
+            <li><NavLink to="/Dashboard">Dashboard</NavLink></li>
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost text-xl bg-[rgb(14,165,233)] text-white">Artika</Link>
-        </div>
+        <NavLink to="/" className="btn btn-ghost text-xl bg-[rgb(14,165,233)] text-white">Artika</NavLink>
+      </div>
+
       <div className="navbar-center hidden lg:flex">
-  <ul className="menu menu-horizontal px-1">
-    <li>
-      <Link 
-        to="/" 
-        className={({ isActive }) => isActive ? "bg-red-600" : ""}
-      >
-        Home
-      </Link>
-    </li>
-    <li>
-      <Link 
-        to="/Donate" 
-        className={({ isActive }) => isActive ? "active" : ""}
-      >
-        Donation Campaigns
-      </Link>
-    </li>
-    <li>
-      <Link 
-        to="/Help" 
-        className={({ isActive }) => isActive ? "active" : ""}
-      >
-        How to Help
-      </Link>
-    </li>
-    <li>
-      <Link 
-        to="/DashBoard" 
-        className={({ isActive }) => isActive ? "active" : ""}
-      >
-        DashBoard
-      </Link>
-    </li>
-  </ul>
-</div>
+        <ul className="menu menu-horizontal px-1">
+          <li><NavLink to="/" className={({ isActive }) => isActive ? "bg-[rgb(14,165,233)] text-white" : "text-gray-600"}>Home</NavLink></li>
+          <li><NavLink to="/Donate" className={({ isActive }) => isActive ? "bg-[rgb(14,165,233)] text-white" : "text-gray-600"}>Donation Campaigns</NavLink></li>
+          <li><NavLink to="/Help" className={({ isActive }) => isActive ? "bg-[rgb(14,165,233)] text-white" : "text-gray-600"}>How to Help</NavLink></li>
+          <li><NavLink to="/Dashboard" className={({ isActive }) => isActive ? "bg-[rgb(14,165,233)] text-white" : "text-gray-600"}>Dashboard</NavLink></li>
+        </ul>
+      </div>
 
       <div className="navbar-end gap-2">
-        <Link to="/Login" className="btn bg-[rgb(14,165,233)] text-white">Login</Link>
-        <Link to="/Register" className="btn bg-[rgb(14,165,233)] text-white">Register</Link>
+        <NavLink to="/Login" className="btn bg-[rgb(14,165,233)] text-white">Login</NavLink>
+        <NavLink to="/Register" className="btn bg-[rgb(14,165,233)] text-white">Register</NavLink>
       </div>
     </div>
   );
