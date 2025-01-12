@@ -14,6 +14,8 @@ import Help from "./Components/Help/Help";
 import Donate from "./Components/Donate/Donate";
 import DonateDetails from "./Components/DonateDetails/DonateDetails";
 import { Toaster } from "react-hot-toast";
+import AuthProvider from "./Components/AuthProvider/AuthProvider";
+import PrivetRoute from "./Components/PrivetRoute/PrivetRoute";
 
 const router = createBrowserRouter([
   {
@@ -44,7 +46,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/donate/:id",
-        element: <DonateDetails />,
+        element: <PrivetRoute>
+          <DonateDetails />
+        </PrivetRoute>,
         loader: async ({ params }) => {
           const res = await fetch("/data.json");
           const data = await res.json();
@@ -57,7 +61,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <AuthProvider>
     <RouterProvider router={router} />
     <Toaster /> 
+    </AuthProvider>
   </React.StrictMode>
 );

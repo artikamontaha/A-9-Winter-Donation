@@ -6,7 +6,7 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCngy5yOiUbG8eQ-de3x-obPKjJ1ejZRlg",
+  apiKey: "AIzaSyAu9guPxB0YmGDYU4W54BQDyqTYcZ4ukws",
   authDomain: "winter-donation-23a1c.firebaseapp.com",
   projectId: "winter-donation-23a1c",
   storageBucket: "winter-donation-23a1c.firebasestorage.app",
@@ -17,4 +17,5 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-export default auth
+export default auth;      
+

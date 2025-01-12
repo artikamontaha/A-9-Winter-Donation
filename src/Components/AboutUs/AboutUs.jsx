@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const AboutUs = () => {
     return (
-        <section data-aos="flip-left" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="2000" className="bg-gray-200 rounded-xl mt-20 mb-20 py-12 px-6 md:px-20">
+        <section data-aos="flip-up" className="bg-gray-200 rounded-xl mt-20 mb-20 py-12 px-6 md:px-20">
 
             <motion.div
                 initial={{ opacity: 0, y: 50 }} // Start hidden and below
