@@ -4,7 +4,7 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 // import toast from "react-hot-toast";
 
 const Navbar = () => {
-  const { user, userLogout } = useContext(AuthContext)
+  const { user, signOutUser } = useContext(AuthContext)
   console.log(user);
 
   // const handlelogout = () => {
@@ -60,7 +60,7 @@ const Navbar = () => {
 
       <div className="navbar-end gap-2">
         {
-          user ? <button onClick={userLogout} className="w-[80px] bg-[rgb(14,165,233)] text-white  btn ">LogOut</button> : <Link to='/auth/login' className="w-[80px] btn bg-[rgb(14,165,233)] text-white">Login</Link>
+          user ? <button onClick={signOutUser} className="w-[80px] bg-[rgb(14,165,233)] text-white  btn ">LogOut</button> : <Link to='/Login' className="w-[80px] btn bg-[rgb(14,165,233)] text-white">Login</Link>
         }
       </div>
     </div>

@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 const Login = () => {
     const navgate = useNavigate();
-    const {signInUser, signInWithGoogle} = useContext(AuthContext)
+    const {signInUser, signInWithGoogle, setUser} = useContext(AuthContext)
 
     const handleLogin = e => {
         e.preventDefault();
@@ -29,6 +29,7 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         signInWithGoogle()
         .then(result => {
+          setUser(result.user)
             console.log(result.user)
             toast.success('successfully')
             navgate('/')
