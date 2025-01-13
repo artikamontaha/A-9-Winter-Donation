@@ -1,5 +1,6 @@
 import About from "../About/About";
 import AboutUs from "../AboutUs/AboutUs";
+import DonationTheme from "../DonationTheme/DonationTheme";
 import Home from "../Home/Home";
 
 const HomeLeyout = () => {
@@ -8,6 +9,7 @@ const HomeLeyout = () => {
             <Home></Home>
             <About></About>
             <AboutUs></AboutUs>
+            <DonationTheme></DonationTheme>
         </div>
     );
 };
