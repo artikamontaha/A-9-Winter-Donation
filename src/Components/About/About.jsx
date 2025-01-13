@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 const About = () => {
   return (
     <>
-      <div data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="1600"
+      <div data-aos="fade-zoom-in" data-aos-offset="200" 
+      data-aos-easing="ease-in-sine" data-aos-duration="1000"
       className="card mb-5 bg-base-100 w-full mt-8 border-2 shadow-xl">
 
         <motion.div

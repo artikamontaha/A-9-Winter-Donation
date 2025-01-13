@@ -16,6 +16,14 @@ import DonateDetails from "./Components/DonateDetails/DonateDetails";
 import { Toaster } from "react-hot-toast";
 import AuthProvider from "./Components/AuthProvider/AuthProvider";
 import PrivetRoute from "./Components/PrivetRoute/PrivetRoute";
+import Dashboard from "./Components/Dashboard/Dashboard";
+
+const donateLoader = async ({ params }) => {
+  const res = await fetch("/data.json");
+  const data = await res.json();
+  console.log(data); 
+  return data.find((donate) => donate.id === Number(params.id));
+};
 
 const router = createBrowserRouter([
   {
@@ -46,15 +54,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/donate/:id",
-        element: <PrivetRoute>
-          <DonateDetails />
-        </PrivetRoute>,
-        loader: async ({ params }) => {
-          const res = await fetch("/data.json");
-          const data = await res.json();
-          return data.find((donate) => donate.id === Number(params.id));
-        },
+        element: (
+          <PrivetRoute>
+            <DonateDetails />
+          </PrivetRoute>
+        ),
+        loader: donateLoader, 
       },
+      {
+        path: "/Dashboard",
+        element: <PrivetRoute>
+          <Dashboard></Dashboard>
+        </PrivetRoute>
+      }
     ],
   },
 ]);
@@ -62,8 +74,8 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
-    <RouterProvider router={router} />
-    <Toaster /> 
+      <RouterProvider router={router} />
+      <Toaster />
     </AuthProvider>
   </React.StrictMode>
 );

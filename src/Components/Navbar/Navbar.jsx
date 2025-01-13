@@ -1,21 +1,22 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
-// import toast from "react-hot-toast";
+import { toast } from "react-hot-toast"; 
 
 const Navbar = () => {
-  const { user, signOutUser } = useContext(AuthContext)
+  const { user, signOutUser } = useContext(AuthContext);
   console.log(user);
 
-  // const handlelogout = () => {
-  //   userLogout()
-  //     .then(() => {
-  //       toast.success('Log-Out Successful!');
-  //     })
-  //     .catch(error => {
-  //       toast.error(error.code);
-  //     });
-  // }
+  const handleLogout = () => {
+    signOutUser()
+      .then(() => {
+        toast.success("Successfully logged out!"); 
+      })
+      .catch((error) => {
+        toast.error(error.message); 
+      });
+  };
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -46,7 +47,7 @@ const Navbar = () => {
             <li><NavLink to="/Dashboard">Dashboard</NavLink></li>
           </ul>
         </div>
-        <NavLink to="/" className="btn btn-ghost text-xl bg-[rgb(14,165,233)] text-white">Artika</NavLink>
+        <NavLink to="/" className="btn btn-ghost text-xl bg-[rgb(14,165,233)] text-white">Winter-Donate</NavLink>
       </div>
 
       <div className="navbar-center hidden lg:flex">
@@ -60,7 +61,7 @@ const Navbar = () => {
 
       <div className="navbar-end gap-2">
         {
-          user ? <button onClick={signOutUser} className="w-[80px] bg-[rgb(14,165,233)] text-white  btn ">LogOut</button> : <Link to='/Login' className="w-[80px] btn bg-[rgb(14,165,233)] text-white">Login</Link>
+          user ? <button onClick={handleLogout} className="w-[80px] bg-[rgb(14,165,233)] text-white btn ">LogOut</button> : <Link to='/Login' className="w-[80px] btn bg-[rgb(14,165,233)] text-white">Login</Link>
         }
       </div>
     </div>
