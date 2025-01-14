@@ -31,7 +31,7 @@ const DonateDetails = () => {
       toast.error("Please fill in all required fields! 🚨");
     } else {
       console.log("Form Submitted:", formData);
-      toast.success("Thank you for your donation! 🎉");
+      toast.success("Thank you! We will reach your destination soon.");
 
       
       setFormData({

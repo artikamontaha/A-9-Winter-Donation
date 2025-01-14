@@ -2,7 +2,7 @@ const Help = () => {
   return (
     <>
     <div>
-      <div className="pt-10">
+      <div className="pt-10 md:mb-[157px]">
                 <h1 className="text-4xl font-bold mb-5 items-center flex justify-center">How You Can Help: Donate to Those in Need</h1> 
                 <h2 className="font-semibold text-1xl items-center flex justify-center mt-2">our contribution can bring warmth, nourishment, and hope to families and individuals facing hardship this winter. Follow these simple steps to make a difference:</h2>
 

@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
+// eslint-disable-next-line react/prop-types
 const SingleNewsCart = ({ donate }) => {
     const navigate = useNavigate(); 
 
+    // eslint-disable-next-line react/prop-types
     const { id, image, title, description, status, contactInfo, division } = donate;
 
     return (
