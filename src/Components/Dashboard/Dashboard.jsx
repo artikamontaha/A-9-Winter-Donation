@@ -1,82 +1,37 @@
-import { useState } from 'react';
-import { useContext } from 'react';
+import {  useContext } from 'react';
 import { AuthContext } from '../AuthProvider/AuthProvider';
-import { updateProfile } from 'firebase/auth';
-import auth from '../../../firebase.config';
-import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
-    const { user, setUser } = useContext(AuthContext);
-    const [newName, setNewName] = useState('');
-    const [newPhotoURL, setNewPhotoURL] = useState('');
-    const [isEditing, setIsEditing] = useState(false);
-
-    const handleUpdateProfile = async (e) => {
-        e.preventDefault();
-        try {
-            const currentUser = auth.currentUser;
-
-            if (!currentUser) {
-                throw new Error('No user logged in');
-            }
-
-            await updateProfile(currentUser, {
-                displayName: newName,
-                photoURL: newPhotoURL
-            });
-
-            setUser({
-                ...user,
-                displayName: newName,
-                photoURL: newPhotoURL
-            });
-
-            toast.success('Profile updated successfully!');
-            setIsEditing(false);
-        } catch (error) {
-            toast.error('Error updating profile: ' + error.message);
-        }
-    };
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     return (
         <div className="flex md:mt-[200px] md:mb-[313px] flex-col justify-center items-center space-x-4">
+           
+            <h2 className="font-bold text-4xl text-blue-500">
+                Welcome, {user?.displayName || 'Guest'}!
+            </h2>
+
             <img
                 src={user?.photoURL || 'https://via.placeholder.com/150'}
                 alt="Profile"
-                className="w-28 h-28 rounded-full"
+                className="w-28 h-28 rounded-full mt-4"
             />
-            <span className="font-bold text-3xl">
-                {user?.displayName || 'No Name Available'}
-            </span>
 
+            {/* Profile Information */}
+            <div className="text-center mt-4">
+                <p className="text-2xl font-semibold">Name: {user?.displayName || 'No Name Available'}</p>
+                <p className="text-xl text-gray-600">Email: {user?.email || 'No Email Available'}</p>
+            </div>
+
+            {/* Update Profile Button */}
             <button
-                onClick={() => setIsEditing(!isEditing)}
-                className="btn bg-[rgb(14,165,233)] text-white mt-4"
+                onClick={() => navigate('/update-profile')}
+                className="btn bg-[rgb(14,165,233)] text-white mt-6"
             >
-                {isEditing ? 'Cancel' : 'Edit Profile'}
+                Update Profile
             </button>
-
-            {isEditing && (
-                <form onSubmit={handleUpdateProfile} className="mt-4 flex flex-col">
-                    <input
-                        type="text"
-                        value={newName}
-                        onChange={(e) => setNewName(e.target.value)}
-                        className="input input-bordered mt-2"
-                        placeholder="Update Name"
-                    />
-                    <input
-                        type="text"
-                        value={newPhotoURL}
-                        onChange={(e) => setNewPhotoURL(e.target.value)}
-                        className="input input-bordered mt-2"
-                        placeholder="Update Photo URL"
-                    />
-                    <button type="submit" className="btn bg-[rgb(14,165,233)] text-white mt-4">
-                        Update Profile
-                    </button>
-                </form>
-            )}
         </div>
     );
 };

@@ -17,11 +17,12 @@ import { Toaster } from "react-hot-toast";
 import AuthProvider from "./Components/AuthProvider/AuthProvider";
 import PrivetRoute from "./Components/PrivetRoute/PrivetRoute";
 import Dashboard from "./Components/Dashboard/Dashboard";
+import ForgetPassword from "./Components/ForgetPassword/ForgetPassword";
 
 const donateLoader = async ({ params }) => {
   const res = await fetch("/data.json");
   const data = await res.json();
-  console.log(data); 
+  console.log(data);
   return data.find((donate) => donate.id === Number(params.id));
 };
 
@@ -59,14 +60,20 @@ const router = createBrowserRouter([
             <DonateDetails />
           </PrivetRoute>
         ),
-        loader: donateLoader, 
+        loader: donateLoader,
       },
       {
         path: "/Dashboard",
-        element: <PrivetRoute>
-          <Dashboard></Dashboard>
-        </PrivetRoute>
-      }
+        element: (
+          <PrivetRoute>
+            <Dashboard></Dashboard>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "/ForgetPassword", 
+        element: <ForgetPassword></ForgetPassword>
+      },
     ],
   },
 ]);
