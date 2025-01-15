@@ -7,9 +7,10 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
     const navigate = useNavigate();
-    const { createUser, setUser } = useContext(AuthContext);
+    const { createUser, signInWithGoogle, setUser } = useContext(AuthContext); // Added signInWithGoogle
     const [showPassword, setShowPassword] = useState(false);
 
+    // Handle form registration
     const handleRegister = (e) => {
         e.preventDefault();
 
@@ -24,7 +25,6 @@ const Register = () => {
         }
 
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-
         if (!passwordRegex.test(password)) {
             toast.error('At least one uppercase, one lowercase, one number, one special character');
             return;
@@ -33,7 +33,6 @@ const Register = () => {
         createUser(email, password)
             .then(async (result) => {
                 const user = result.user;
-
                 await updateProfile(user, {
                     displayName: name,
                     photoURL: photoURL || 'default-photo-url',
@@ -50,7 +49,19 @@ const Register = () => {
                 navigate('/');
             })
             .catch((error) => {
-                console.log('ERROR', error.message);
+                toast.error(error.message);
+            });
+    };
+
+    // Handle Google Sign-In
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then((result) => {
+                setUser(result.user);
+                toast.success('Successfully registered with Google!');
+                navigate('/');
+            })
+            .catch((error) => {
                 toast.error(error.message);
             });
     };
@@ -90,8 +101,10 @@ const Register = () => {
                             type={showPassword ? 'text' : 'password'}
                             name='password'
                             placeholder="Password"
-                            className="input input-bordered" required />
-                       <button
+                            className="input input-bordered"
+                            required
+                        />
+                        <button
                             type="button"
                             onClick={() => setShowPassword(!showPassword)}
                             className="btn btn-xs absolute right-2 top-12"
@@ -106,6 +119,21 @@ const Register = () => {
 
                     <p>Already Have An Account? <Link className="text-[rgb(14,165,233)] font-bold underline" to='/Login'>Login Here</Link></p>
                 </form>
+
+                {/* Google Sign-In Button */}
+                <div className="mb-4 flex justify-center items-center">
+                    <button
+                        onClick={handleGoogleSignIn}
+                        className="btn w-[300px] flex items-center justify-center"
+                    >
+                        <img
+                            className="h-8 w-8 mr-2"
+                            src="https://cdn-icons-png.flaticon.com/128/300/300221.png"
+                            alt="Google Icon"
+                        />
+                        Register With Google
+                    </button>
+                </div>
             </div>
         </div>
     );
